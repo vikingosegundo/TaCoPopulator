@@ -15,7 +15,7 @@ class MyViewPopulator : ViewPopulator {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print("will display")
         let f = sectionCellModelsFactories[indexPath.section]
-        let element = f.provider.objectAt(indexPath.row)
+        let element = f.provider.objectAt(index: indexPath.row)
         print(element)
     }
 }
