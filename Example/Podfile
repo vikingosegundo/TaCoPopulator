@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'TaCoPopulator_Example' do
+  pod 'TaCoPopulator', :path => '../'
+
+  target 'TaCoPopulator_Tests' do
+    inherit! :search_paths
+
+    pod 'Quick', '~> 0.8'
+  pod 'Nimble', '~> 3.0'
+  end
+end
