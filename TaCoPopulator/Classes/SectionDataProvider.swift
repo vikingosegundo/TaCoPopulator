@@ -14,7 +14,7 @@ protocol SectionDataProviderType {
     var didSelectIndexPath:((IndexPath) -> Void)? { get }
     var elementsDidReload:(() -> Void)? { set get }
     func numberOfElements() -> Int
-    func objectAt(index: Int) -> Any
+    func elementAt(index: Int) -> Any
 }
 
 
@@ -63,7 +63,7 @@ extension SectionDataProvider {
     }
     
     open
-    func objectAt(index:Int) -> Any {
+    func elementAt(index:Int) -> Any {
         return elements()[index]
     }
     

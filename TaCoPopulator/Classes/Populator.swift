@@ -68,6 +68,7 @@ class ViewPopulator:NSObject {
         }
     }
     
+    public private(set)
     var parentView: PopulatorView? {
         set{
             if let tableView = newValue as? UITableView {
@@ -137,8 +138,8 @@ extension ViewPopulator: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let factory = sectionCellModelsFactories[indexPath.section]
         return ToCell<UICollectionView>.cell(from: factory, for: collectionView, at: indexPath) as! UICollectionViewCell
-        
     }
+    
     public
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let factory = sectionCellModelsFactories[indexPath.section]
