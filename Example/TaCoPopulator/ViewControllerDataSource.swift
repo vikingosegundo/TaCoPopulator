@@ -54,8 +54,8 @@ class ViewControllerDataSource<TableOrCollectionView: PopulatorView> {
         }
         
         if  let populatorView  = populatorView as? UICollectionView {
-            let  section1factory = SectionCellsFactory<Int, TextCollectionViewCell>(parentView: populatorView, provider: dp1, cellConfigurator: collectionViewCellConfig)
-            let  section2factory = SectionCellsFactory<String, TextCollectionViewCell>(parentView: populatorView, provider: dp2, cellConfigurator: collectionViewCellConfig)
+            let  section1factory = SectionCellsFactory<Int, TextCollectionViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: collectionViewCellConfig)
+            let  section2factory = SectionCellsFactory<String, TextCollectionViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: collectionViewCellConfig)
             
             let elementsDidReload = section1factory.elementsDidReload
             section1factory.elementsDidReload = {
@@ -67,8 +67,8 @@ class ViewControllerDataSource<TableOrCollectionView: PopulatorView> {
         }
         
         if  let populatorView  = populatorView as? UITableView {
-            let section1factory = SectionCellsFactory<Int, UITableViewCell>(parentView: populatorView, provider: dp1, cellConfigurator: tableViewViewCellConfig)
-            let section2factory = SectionCellsFactory<String, UITableViewCell>(parentView: populatorView, provider: dp2, cellConfigurator: tableViewViewCellConfig)
+            let section1factory = SectionCellsFactory<Int, UITableViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: tableViewViewCellConfig)
+            let section2factory = SectionCellsFactory<String, UITableViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: tableViewViewCellConfig)
             self.populator = Populator(with: populatorView, sectionCellModelsFactories: [section1factory, section2factory])
         }
     }

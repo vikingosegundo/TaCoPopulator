@@ -10,17 +10,10 @@ import UIKit
 
 public
 protocol PopulatorView: class {
-    func reload()
+    func reloadData()
 }
 
-extension UITableView: PopulatorView {
-    public func reload() {
-        self.reloadData()
-    }
-}
+extension UITableView: PopulatorView {}
 
-extension UICollectionView: PopulatorView {
-    public func reload() {
-        self.reloadData()
-    }
-}
+
+extension UICollectionView: PopulatorView {}

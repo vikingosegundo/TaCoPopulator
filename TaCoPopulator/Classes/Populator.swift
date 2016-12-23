@@ -36,9 +36,9 @@ struct FactoryConfigurator {
 
 fileprivate
 struct ToCell<View:PopulatorView> {
-    static func cell(from factory: SectionCellsFactoryType, for parentView: View, at indexPath: IndexPath) -> PopulatorViewCell {
+    static func cell(from factory: SectionCellsFactoryType, for populatorView: View, at indexPath: IndexPath) -> PopulatorViewCell {
         let model = factory.cellModels()[indexPath.row]
-        return  model.toCell(parentView, indexPath: indexPath)
+        return  model.toCell(populatorView, indexPath: indexPath)
     }
 }
 
@@ -49,7 +49,7 @@ class ViewPopulator:NSObject {
     public init(populatorView: PopulatorView ,sectionCellModelsFactories:[SectionCellsFactoryType] ) {
         self.sectionCellModelsFactories = FactoryConfigurator.factories(sectionCellModelsFactories)
         super.init()
-        self.parentView = populatorView
+        self.populatorView = populatorView
     }
     
     weak var tableView: UITableView?{
@@ -69,7 +69,7 @@ class ViewPopulator:NSObject {
     }
     
     public private(set)
-    var parentView: PopulatorView? {
+    var populatorView: PopulatorView? {
         set{
             if let tableView = newValue as? UITableView {
                 self.tableView = tableView

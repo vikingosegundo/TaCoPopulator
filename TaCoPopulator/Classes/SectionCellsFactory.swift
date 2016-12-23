@@ -22,15 +22,15 @@ open
 class SectionCellsFactory<Element:Any, Cell: PopulatorViewCell>: SectionCellsFactoryType {
     
     public
-    init(parentView: PopulatorView, provider: SectionDataProvider<Element>, elementsDidReload:(() -> Void)? = nil ,cellConfigurator: @escaping ((Element, Cell, IndexPath) -> Cell)){
+    init(populatorView: PopulatorView, provider: SectionDataProvider<Element>, elementsDidReload:(() -> Void)? = nil ,cellConfigurator: @escaping ((Element, Cell, IndexPath) -> Cell)){
         self.provider = provider
-        self.populatorView = parentView
+        self.populatorView = populatorView
         self.cellConfigurator = cellConfigurator
         
         if let elementsDidReload = elementsDidReload {
             self.elementsDidReload = elementsDidReload
         } else {
-            self.elementsDidReload = { parentView.reload() }
+            self.elementsDidReload = { populatorView.reloadData() }
         }
         
         self.provider.elementsDidReload = {

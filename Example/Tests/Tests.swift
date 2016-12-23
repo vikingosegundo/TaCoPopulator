@@ -55,7 +55,7 @@ class SectionCellsFactorySpec: QuickSpec {
                         (elm, indexPath) -> String in
                         return "Cell"
                     })
-                    sut = SectionCellsFactory(parentView: tableView, provider: provider){
+                    sut = SectionCellsFactory(populatorView: tableView, provider: provider){
                         element, cell, indexPath in
                         cell.textLabel?.text = "\(element)"
                         return cell
@@ -95,7 +95,7 @@ class PopulatorSpec: QuickSpec {
                     })
                     
                     provider.provideElements(Array(0 ..< 7))
-                    let sectionFactory = SectionCellsFactory<Int, TextCollectionCell>(parentView: collectionView, provider: provider) {
+                    let sectionFactory = SectionCellsFactory<Int, TextCollectionCell>(populatorView: collectionView, provider: provider) {
                         element, cell, indexPath in
                         cell.textLabel?.text = "\(element)"
                         return cell
@@ -127,7 +127,7 @@ class PopulatorSpec: QuickSpec {
                     })
                     
                     provider.provideElements(Array(0 ..< 7))
-                    let sectionFactory = SectionCellsFactory<Int, UITableViewCell>(parentView: tableView, provider: provider) {
+                    let sectionFactory = SectionCellsFactory<Int, UITableViewCell>(populatorView: tableView, provider: provider) {
                         element, cell, indexPath in
                         cell.textLabel?.text = "\(element)"
                         return cell
@@ -157,7 +157,7 @@ class PopulatorSpec: QuickSpec {
                     })
                     
                     provider!.provideElements(Array(0 ..< 7))
-                    sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(parentView: tableView, provider: provider!) {
+                    sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(populatorView: tableView, provider: provider!) {
                         element, cell, indexPath in
                         cell.textLabel?.text = "\(element)"
                         return cell
@@ -197,7 +197,7 @@ class ViewPopulatorSpec: QuickSpec {
                 })
                 
                 provider.provideElements(Array(0 ..< 7))
-                let sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(parentView: tableView, provider: provider) {
+                let sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(populatorView: tableView, provider: provider) {
                     element, cell, indexPath in
                     cell.textLabel?.text = "\(element)"
                     return cell
@@ -208,7 +208,7 @@ class ViewPopulatorSpec: QuickSpec {
             
             it("parent view is the tableview"){
                 
-                let view = sut!.parentView!
+                let view = sut!.populatorView!
                 expect(view).to(be(tableView))
             
             }
@@ -228,7 +228,7 @@ class ViewPopulatorSpec: QuickSpec {
                 })
                 
                 provider.provideElements(Array(0 ..< 7))
-                let sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(parentView: collectionView, provider: provider) {
+                let sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(populatorView: collectionView, provider: provider) {
                     element, cell, indexPath in
                     cell.textLabel?.text = "\(element)"
                     return cell
@@ -239,7 +239,7 @@ class ViewPopulatorSpec: QuickSpec {
             
             it("parent view is the collectionView"){
                 
-                let view = sut!.parentView!
+                let view = sut!.populatorView!
                 expect(view).to(be(collectionView))
                 
             }
