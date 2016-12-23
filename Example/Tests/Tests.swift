@@ -41,7 +41,7 @@ class SectionDataProviderSpec : QuickSpec {
 }
 
 class SectionCellsFactorySpec: QuickSpec {
-
+    
     override func spec() {
         describe("SectionCellsFactory prepares cell models"){
             
@@ -210,7 +210,7 @@ class ViewPopulatorSpec: QuickSpec {
                 
                 let view = sut!.populatorView!
                 expect(view).to(be(tableView))
-            
+                
             }
         }
         
@@ -245,4 +245,64 @@ class ViewPopulatorSpec: QuickSpec {
             }
         }
     }
+}
+
+
+class ViewControllerSpec : QuickSpec {
+    
+    override func spec() {
+        
+        context("TableView") {
+            var sut: MockViewController<UITableView>!
+            
+            beforeEach {
+                let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 320, height: 960))
+                sut = MockViewController<UITableView>()
+                sut.view.frame = tableView.bounds
+                sut.populatorView = tableView
+                _ = sut.view
+                
+            }
+            
+            it("gets populated"){
+                var tableView: UITableView?
+                
+                if let populatorView = sut.populatorView as? UITableView {
+                    tableView = populatorView
+                }
+                expect(tableView).toNot(beNil())
+                expect(tableView!.numberOfRows(inSection: 0)).to(equal(9))
+                expect(tableView!.numberOfRows(inSection: 0)).toEventually(equal(15))
+                expect(tableView!.numberOfRows(inSection: 1)).toEventually(equal(3))
+            }
+        }
+        
+        context("CollectionView") {
+            var sut: MockViewController<UICollectionView>!
+            
+            beforeEach {
+                let layout = UICollectionViewFlowLayout()
+                layout.itemSize = CGSize(width: 30, height: 30)
+                let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 320, height: 960), collectionViewLayout: layout)
+                sut = MockViewController<UICollectionView>()
+                sut.view.frame = collectionView.bounds
+                sut.populatorView = collectionView
+                _ = sut.view
+                
+            }
+            
+            it("gets populated"){
+                var collectionView: UICollectionView?
+                
+                if let populatorView = sut.populatorView as? UICollectionView {
+                    collectionView = populatorView
+                }
+                expect(collectionView).toNot(beNil())
+                expect(collectionView!.numberOfItems(inSection: 0)).to(equal(9))
+                expect(collectionView!.numberOfItems(inSection: 0)).toEventually(equal(15))
+                expect(collectionView!.numberOfItems(inSection: 1)).toEventually(equal(3))
+            }
+        }
+    }
+    
 }

@@ -19,6 +19,10 @@
 		6473AC251E0581B700F70CD9 /* DataProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6473AC1A1E0581B700F70CD9 /* DataProviders.swift */; };
 		6473AC261E0581B700F70CD9 /* MyViewPopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6473AC1B1E0581B700F70CD9 /* MyViewPopulator.swift */; };
 		6473AC281E058D5900F70CD9 /* ViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6473AC271E058D5900F70CD9 /* ViewControllerDataSource.swift */; };
+		649ABBDE1E0D724600F44AF2 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649ABBDD1E0D724600F44AF2 /* MockViewController.swift */; };
+		649ABBE01E0D73B400F44AF2 /* MockDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649ABBDF1E0D73B400F44AF2 /* MockDatasource.swift */; };
+		649ABBE21E0D744F00F44AF2 /* MockDataProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649ABBE11E0D744F00F44AF2 /* MockDataProviders.swift */; };
+		649ABBE31E0D74AD00F44AF2 /* TextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6473AC191E0581B700F70CD9 /* TextCollectionViewCell.swift */; };
 		69A26B538726F1A9FC50C52D /* Pods_TaCoPopulator_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C5C005BCCEF2F53B6E47F06 /* Pods_TaCoPopulator_Tests.framework */; };
 		70A2680E822A5AD011E8527C /* Pods_TaCoPopulator_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3243ECE6D229AD596397BB /* Pods_TaCoPopulator_Example.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +58,9 @@
 		6473AC1A1E0581B700F70CD9 /* DataProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProviders.swift; sourceTree = "<group>"; };
 		6473AC1B1E0581B700F70CD9 /* MyViewPopulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewPopulator.swift; sourceTree = "<group>"; };
 		6473AC271E058D5900F70CD9 /* ViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDataSource.swift; sourceTree = "<group>"; };
+		649ABBDD1E0D724600F44AF2 /* MockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
+		649ABBDF1E0D73B400F44AF2 /* MockDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDatasource.swift; sourceTree = "<group>"; };
+		649ABBE11E0D744F00F44AF2 /* MockDataProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataProviders.swift; sourceTree = "<group>"; };
 		6A1D9FDAAF82066051394945 /* Pods-TaCoPopulator_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaCoPopulator_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaCoPopulator_Tests/Pods-TaCoPopulator_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ABFC2E1B7C41FA4029FEE09C /* Pods-TaCoPopulator_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaCoPopulator_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaCoPopulator_Example/Pods-TaCoPopulator_Example.release.xcconfig"; sourceTree = "<group>"; };
 		AE152E8A92C76A07DABD681C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -136,6 +143,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				649ABBDC1E0D722100F44AF2 /* Mocks */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -158,6 +166,16 @@
 				0C27605F28C7654F0EEAF31D /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		649ABBDC1E0D722100F44AF2 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				649ABBDD1E0D724600F44AF2 /* MockViewController.swift */,
+				649ABBDF1E0D73B400F44AF2 /* MockDatasource.swift */,
+				649ABBE11E0D744F00F44AF2 /* MockDataProviders.swift */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 		88160C0FD94143106E5E5DB5 /* Pods */ = {
@@ -388,6 +406,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649ABBE31E0D74AD00F44AF2 /* TextCollectionViewCell.swift in Sources */,
+				649ABBE21E0D744F00F44AF2 /* MockDataProviders.swift in Sources */,
+				649ABBE01E0D73B400F44AF2 /* MockDatasource.swift in Sources */,
+				649ABBDE1E0D724600F44AF2 /* MockViewController.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
