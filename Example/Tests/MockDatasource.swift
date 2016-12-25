@@ -69,6 +69,11 @@ class MockDataSource<TableOrCollectionView: PopulatorView> {
             let section1factory = SectionCellsFactory<Int, UITableViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: tableViewViewCellConfig)
             let section2factory = SectionCellsFactory<String, UITableViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: tableViewViewCellConfig)
             self.populator = Populator(with: populatorView, sectionCellModelsFactories: [section1factory, section2factory])
+            
+            dp1.heightForCell = {
+                element, indexpath in
+                return CGFloat(44 + indexpath.row * 5)
+            }
         }
     }
     

@@ -258,8 +258,11 @@ class ViewControllerSpec : QuickSpec {
             beforeEach {
                 let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 320, height: 960))
                 sut = MockViewController<UITableView>()
+                
+                tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
                 sut.view.frame = tableView.bounds
                 sut.populatorView = tableView
+                
                 _ = sut.view
                 
             }
@@ -274,6 +277,17 @@ class ViewControllerSpec : QuickSpec {
                 expect(tableView!.numberOfRows(inSection: 0)).to(equal(9))
                 expect(tableView!.numberOfRows(inSection: 0)).toEventually(equal(15))
                 expect(tableView!.numberOfRows(inSection: 1)).toEventually(equal(3))
+            }
+            
+            it("cells have dfferent sizes") {
+                let tableView = sut.populatorView as! UITableView
+                let cell1 = tableView.visibleCells[0]
+                let cell2 = tableView.visibleCells[1]
+                let cell3 = tableView.visibleCells[2]
+
+                expect(cell1.frame.size.height).to(equal(44))
+                expect(cell2.frame.size.height).to(equal(49))
+                expect(cell3.frame.size.height).to(equal(54))
             }
         }
         

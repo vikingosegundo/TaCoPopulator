@@ -119,6 +119,11 @@ extension ViewPopulator: UITableViewDataSource, UITableViewDelegate {
         let factory = sectionCellModelsFactories[indexPath.section]
         factory.provider.didSelectIndexPath?(indexPath)
     }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let factory = sectionCellModelsFactories[indexPath.section]
+        return factory.provider.heightForIndexPath(indexPath)
+    }
 }
 
 

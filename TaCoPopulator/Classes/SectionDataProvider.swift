@@ -15,6 +15,7 @@ protocol SectionDataProviderType {
     var elementsDidReload:(() -> Void)? { set get }
     func numberOfElements() -> Int
     func elementAt(index: Int) -> Any
+    func heightForIndexPath(_ indexPath: IndexPath) -> CGFloat
 }
 
 
@@ -53,6 +54,17 @@ class SectionDataProvider<Element>: SectionDataProviderType {
     
     internal
     let reuseIdentifer: (Element, IndexPath) -> String
+    
+    public
+    var heightForCell:((Element, IndexPath) -> CGFloat)?
+    
+    public
+    func heightForIndexPath(_ indexPath: IndexPath) -> CGFloat {
+        if let heightForCell = heightForCell, let elm = elementAt(index: indexPath.row) as? Element {
+            return heightForCell(elm, indexPath)
+        }
+        return UITableViewAutomaticDimension
+    }
 }
 
 extension SectionDataProvider {
