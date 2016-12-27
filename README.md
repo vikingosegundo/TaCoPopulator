@@ -1,6 +1,6 @@
 # TaCoPopulator
 
-[![CI Status](http://img.shields.io/travis/Manuel Meyer/TaCoPopulator.svg?style=flat)](https://travis-ci.org/Manuel Meyer/TaCoPopulator)
+[![CI Status](http://img.shields.io/travis/vikingosegundo/TaCoPopulator.svg?style=flat)](https://travis-ci.org/Manuel Meyer/TaCoPopulator)
 [![Version](https://img.shields.io/cocoapods/v/TaCoPopulator.svg?style=flat)](http://cocoapods.org/pods/TaCoPopulator)
 [![License](https://img.shields.io/cocoapods/l/TaCoPopulator.svg?style=flat)](http://cocoapods.org/pods/TaCoPopulator)
 [![Platform](https://img.shields.io/cocoapods/p/TaCoPopulator.svg?style=flat)](http://cocoapods.org/pods/TaCoPopulator)
