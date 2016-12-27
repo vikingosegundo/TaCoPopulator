@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Foundation
 
 public
 struct Populator<Pop: ViewPopulator> {
@@ -120,11 +120,49 @@ extension ViewPopulator: UITableViewDataSource, UITableViewDelegate {
         factory.provider.didSelectIndexPath?(indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let factory = sectionCellModelsFactories[indexPath.section]
         return factory.provider.heightForIndexPath(indexPath)
     }
-}
+    
+    
+
+    public
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let factory = sectionCellModelsFactories[section]
+        if let header = factory.provider.header {
+           return header().frame.height
+        }
+        return 0
+    }
+    
+    public
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let factory = sectionCellModelsFactories[section]
+        if let footer = factory.provider.footer {
+            return footer().frame.height
+        }
+        return 0
+    }
+    
+    public
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let factory = sectionCellModelsFactories[section]
+        if let header = factory.provider.header {
+            return header()
+        }
+        return nil
+    }
+    
+    public
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let factory = sectionCellModelsFactories[section]
+        if let footer = factory.provider.footer {
+            return footer()
+        }
+        return nil
+    }}
 
 
 extension ViewPopulator: UICollectionViewDataSource, UICollectionViewDelegate {

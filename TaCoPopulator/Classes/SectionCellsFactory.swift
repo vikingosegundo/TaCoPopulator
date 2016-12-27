@@ -15,8 +15,15 @@ protocol SectionCellsFactoryType {
     func cellModels() -> [CellModelType]
     var sectionIndex:Int { get set }
     var elementsDidReload: (() -> Void)? { set get }
+    static func == (left: SectionCellsFactoryType, right: SectionCellsFactoryType) -> Bool
 }
 
+extension SectionCellsFactoryType {
+    public
+    static func == (lhs: SectionCellsFactoryType, rhs: SectionCellsFactoryType) -> Bool {
+        return lhs.sectionIndex == rhs.sectionIndex
+    }
+}
 
 open
 class SectionCellsFactory<Element:Any, Cell: PopulatorViewCell>: SectionCellsFactoryType {
@@ -47,7 +54,8 @@ class SectionCellsFactory<Element:Any, Cell: PopulatorViewCell>: SectionCellsFac
     fileprivate weak var populatorView: PopulatorView?
     open var elementsDidReload: (() -> Void)?
 
-    open func cellModels() -> [CellModelType] {
+    open
+    func cellModels() -> [CellModelType] {
         guard let realProvider = provider as? SectionDataProvider<Element> else { fatalError() }
         guard let _ = populatorView else { return [] }
         
@@ -58,5 +66,5 @@ class SectionCellsFactory<Element:Any, Cell: PopulatorViewCell>: SectionCellsFac
                              cellConfigurator: cellConfigurator)
         }
         return models
-    }
+    }   
 }

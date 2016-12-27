@@ -74,6 +74,18 @@ class MockDataSource<TableOrCollectionView: PopulatorView> {
                 element, indexpath in
                 return CGFloat(44 + indexpath.row * 5)
             }
+            
+            dp2.header = {
+                let view = UITableViewHeaderFooterView(frame: CGRect(x: 0, y: 0, width: 0, height: 40))
+                view.contentView.backgroundColor = .red
+                return view
+            }
+            
+            dp2.footer = {
+                let view = UITableViewHeaderFooterView(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
+                view.contentView.backgroundColor = .cyan
+                return view
+            }
         }
     }
     

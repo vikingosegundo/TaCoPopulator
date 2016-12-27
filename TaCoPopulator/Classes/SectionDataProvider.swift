@@ -16,6 +16,9 @@ protocol SectionDataProviderType {
     func numberOfElements() -> Int
     func elementAt(index: Int) -> Any
     func heightForIndexPath(_ indexPath: IndexPath) -> CGFloat
+    var header: (() -> UITableViewHeaderFooterView)? { set get }
+    var footer: (() -> UITableViewHeaderFooterView)? { set get }
+
 }
 
 
@@ -59,6 +62,12 @@ class SectionDataProvider<Element>: SectionDataProviderType {
     var heightForCell:((Element, IndexPath) -> CGFloat)?
     
     public
+    var header: (() -> UITableViewHeaderFooterView)?
+    
+    public
+    var footer: (() -> UITableViewHeaderFooterView)?
+    
+    public
     func heightForIndexPath(_ indexPath: IndexPath) -> CGFloat {
         if let heightForCell = heightForCell, let elm = elementAt(index: indexPath.row) as? Element {
             return heightForCell(elm, indexPath)
@@ -89,3 +98,4 @@ extension SectionDataProvider {
         return elements().count
     }
 }
+

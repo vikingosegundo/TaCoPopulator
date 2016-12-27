@@ -12,9 +12,9 @@ class MockIntDataProvider: SectionDataProvider<Int> {
     
     override init(reuseIdentifer: @escaping (Int, IndexPath) -> String) {
         super.init(reuseIdentifer: reuseIdentifer)
-        self.provideElements([1,2,3,4,5,6,7,8,9])
+        self.provideElements([1,2,3,4])
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-            self.provideElements(self.elements() + [10, 11, 12, 13, 14, 15])
+            self.provideElements(self.elements() + [5,6])
         }
     }
 }

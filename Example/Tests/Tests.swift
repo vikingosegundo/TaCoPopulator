@@ -274,8 +274,8 @@ class ViewControllerSpec : QuickSpec {
                     tableView = populatorView
                 }
                 expect(tableView).toNot(beNil())
-                expect(tableView!.numberOfRows(inSection: 0)).to(equal(9))
-                expect(tableView!.numberOfRows(inSection: 0)).toEventually(equal(15))
+                expect(tableView!.numberOfRows(inSection: 0)).to(equal(4))
+                expect(tableView!.numberOfRows(inSection: 0)).toEventually(equal(6))
                 expect(tableView!.numberOfRows(inSection: 1)).toEventually(equal(3))
             }
             
@@ -288,6 +288,38 @@ class ViewControllerSpec : QuickSpec {
                 expect(cell1.frame.size.height).to(equal(44))
                 expect(cell2.frame.size.height).to(equal(49))
                 expect(cell3.frame.size.height).to(equal(54))
+            }
+            
+            it("first section has no header") {
+                let tv = sut.populatorView as! UITableView
+                let header = tv.delegate!.tableView!(tv, viewForHeaderInSection: 0)
+                
+                expect(header).to(beNil())
+            }
+            
+            it("second section has a header") {
+                let tableView = sut.populatorView as! UITableView
+                let header = tableView.delegate!.tableView!(tableView, viewForHeaderInSection: 1) as? UITableViewHeaderFooterView
+                
+                expect(header).toNot(beNil())
+                expect(header!.frame.size.height).to(equal(40))
+                expect(header!.contentView.backgroundColor).to(equal(UIColor.red))
+            }
+            
+            it("first section has no footer") {
+                let tableView = sut.populatorView as! UITableView
+                let footer = tableView.delegate!.tableView?(tableView, viewForFooterInSection: 0)
+                
+                expect(footer).to(beNil())
+            }
+            
+            it("second section has a footer") {
+                let tableView = sut.populatorView as! UITableView
+                let footer = tableView.delegate!.tableView?(tableView, viewForFooterInSection: 1) as? UITableViewHeaderFooterView
+                
+                expect(footer).toNot(beNil())
+                expect(footer!.frame.size.height).to(equal(60))
+                expect(footer!.contentView.backgroundColor).to(equal(UIColor.cyan))
             }
         }
         
@@ -302,18 +334,17 @@ class ViewControllerSpec : QuickSpec {
                 sut.view.frame = collectionView.bounds
                 sut.populatorView = collectionView
                 _ = sut.view
-                
             }
             
             it("gets populated"){
                 var collectionView: UICollectionView?
-                
                 if let populatorView = sut.populatorView as? UICollectionView {
                     collectionView = populatorView
                 }
+                
                 expect(collectionView).toNot(beNil())
-                expect(collectionView!.numberOfItems(inSection: 0)).to(equal(9))
-                expect(collectionView!.numberOfItems(inSection: 0)).toEventually(equal(15))
+                expect(collectionView!.numberOfItems(inSection: 0)).to(equal(4))
+                expect(collectionView!.numberOfItems(inSection: 0)).toEventually(equal(6))
                 expect(collectionView!.numberOfItems(inSection: 1)).toEventually(equal(3))
             }
         }

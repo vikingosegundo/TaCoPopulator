@@ -75,6 +75,19 @@ class ViewControllerDataSource<TableOrCollectionView: PopulatorView> {
                 elm, indexPath in
                 return CGFloat(5 * indexPath.row + 44)
             }
+            
+            dp2.header = {
+                let view = UITableViewHeaderFooterView(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
+                view.contentView.backgroundColor = .yellow
+                return view
+            }
+            
+            dp2.footer = {
+                let view = UITableViewHeaderFooterView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+                view.contentView.backgroundColor = .cyan
+                return view
+            }
+            
         }
     }
 
