@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+TaCoPopulator allows to cretate datasources that will work with UITableViews and UICollectionViews. It is designed to not interfere with the way you use those view. 
+DESC
 
   s.homepage         = 'https://gitlab.com/vikingosegundo/TaCoPopulator'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
