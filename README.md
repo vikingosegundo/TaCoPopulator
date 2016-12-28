@@ -19,7 +19,7 @@ TaCoPopulator is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "TaCoPopulator", :git => 'https://github.com/gowalla/AFNetworking.git'
+pod "TaCoPopulator", :git => 'https://gitlab/vikingosegundo/TaCoPopulator.git'
 ```
 
 ## Author
