@@ -19,7 +19,7 @@ protocol CellModelType {
 
 struct CellModel<Element, Cell: PopulatorViewCell>: CellModelType {
     
-    init(element: Element, reuseIdentifier: String, allowsSelection: Bool = true, cellConfigurator: @escaping (Element, Cell, IndexPath) -> Cell) {
+    init(element: Element, reuseIdentifier: String, allowsSelection: Bool = true, cellConfigurator: @escaping (CellConfigurationDescriptor<Element, Cell>) -> Cell) {
         self.element = element
         self.cellConfigurator = cellConfigurator
         self.reuseIdentifier = reuseIdentifier
@@ -27,7 +27,7 @@ struct CellModel<Element, Cell: PopulatorViewCell>: CellModelType {
     }
     
     let element: Element
-    let cellConfigurator: (Element, Cell, IndexPath) -> Cell
+    let cellConfigurator: (CellConfigurationDescriptor<Element, Cell>) -> Cell
     var allowsSelection: Bool
     var reuseIdentifier: String
     
@@ -35,12 +35,12 @@ struct CellModel<Element, Cell: PopulatorViewCell>: CellModelType {
 
         if let tableView = populatorView as? UITableView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? Cell else { fatalError() }
-            return cellConfigurator(element, cell, indexPath)
+            return cellConfigurator(CellConfigurationDescriptor(element: element, cell: cell, indexPath: indexPath))
         }
         
         if let collectionView = populatorView as? UICollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? Cell else { fatalError() }
-            return cellConfigurator(element, cell, indexPath)
+            return cellConfigurator(CellConfigurationDescriptor(element: element, cell: cell, indexPath: indexPath))
 
         }
         fatalError()

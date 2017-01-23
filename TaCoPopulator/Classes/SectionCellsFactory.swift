@@ -25,11 +25,18 @@ extension SectionCellsFactoryType {
     }
 }
 
+public
+struct CellConfigurationDescriptor<Element:Any, Cell: PopulatorViewCell> {
+    public let element: Element
+    public let cell: Cell
+    public let indexPath: IndexPath
+}
+
 open
 class SectionCellsFactory<Element:Any, Cell: PopulatorViewCell>: SectionCellsFactoryType {
     
     public
-    init(populatorView: PopulatorView, provider: SectionDataProvider<Element>, elementsDidReload:(() -> Void)? = nil ,cellConfigurator: @escaping ((Element, Cell, IndexPath) -> Cell)){
+    init(populatorView: PopulatorView, provider: SectionDataProvider<Element>, elementsDidReload:(() -> Void)? = nil ,cellConfigurator: @escaping ((CellConfigurationDescriptor<Element, Cell>) -> Cell)){
         self.provider = provider
         self.populatorView = populatorView
         self.cellConfigurator = cellConfigurator
@@ -49,7 +56,7 @@ class SectionCellsFactory<Element:Any, Cell: PopulatorViewCell>: SectionCellsFac
     
     open var provider: SectionDataProviderType
     
-    open let  cellConfigurator: ((Element, Cell, IndexPath) -> Cell)
+    open let  cellConfigurator: ((CellConfigurationDescriptor<Element, Cell>) -> Cell)
     open var sectionIndex: Int = -1
     fileprivate weak var populatorView: PopulatorView?
     open var elementsDidReload: (() -> Void)?

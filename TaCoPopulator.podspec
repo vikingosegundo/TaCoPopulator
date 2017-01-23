@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TaCoPopulator'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A datasource framework for Table and Collection Views.'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TaCoPopulator allows to cretate datasources that will work with UITableViews and UICollectionViews. It is designed to not interfere with the way you use those view. 
+TaCoPopulator allows to cretate datasources that will work with UITableViews and UICollectionViews. It is designed to not interfere with the way you use those view.
 DESC
 
   s.homepage         = 'https://gitlab.com/vikingosegundo/TaCoPopulator'
