@@ -56,9 +56,9 @@ class SectionCellsFactorySpec: QuickSpec {
                         return "Cell"
                     })
                     sut = SectionCellsFactory(populatorView: tableView, provider: provider){
-                        element, cell, indexPath in
-                        cell.textLabel?.text = "\(element)"
-                        return cell
+                        configuration in
+                        configuration.cell.textLabel?.text = "\(configuration.element)"
+                        return configuration.cell
                     }
                     provider.provideElements(Array(0 ..< 7))
                     
@@ -96,9 +96,9 @@ class PopulatorSpec: QuickSpec {
                     
                     provider.provideElements(Array(0 ..< 7))
                     let sectionFactory = SectionCellsFactory<Int, TextCollectionCell>(populatorView: collectionView, provider: provider) {
-                        element, cell, indexPath in
-                        cell.textLabel?.text = "\(element)"
-                        return cell
+                        configuration in
+                        configuration.cell.textLabel?.text = "\(configuration.element)"
+                        return configuration.cell
                     }
                     
                     sut = Populator(with: collectionView, sectionCellModelsFactories: [sectionFactory])
@@ -128,9 +128,9 @@ class PopulatorSpec: QuickSpec {
                     
                     provider.provideElements(Array(0 ..< 7))
                     let sectionFactory = SectionCellsFactory<Int, UITableViewCell>(populatorView: tableView, provider: provider) {
-                        element, cell, indexPath in
-                        cell.textLabel?.text = "\(element)"
-                        return cell
+                        configuration in
+                        configuration.cell.textLabel?.text = "\(configuration.element)"
+                        return configuration.cell
                     }
                     
                     sut = Populator(with: tableView, sectionCellModelsFactories: [sectionFactory])
@@ -158,9 +158,9 @@ class PopulatorSpec: QuickSpec {
                     
                     provider!.provideElements(Array(0 ..< 7))
                     sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(populatorView: tableView, provider: provider!) {
-                        element, cell, indexPath in
-                        cell.textLabel?.text = "\(element)"
-                        return cell
+                        configuration in
+                        configuration.cell.textLabel?.text = "\(configuration.element)"
+                        return configuration.cell
                     }
                     
                     
@@ -198,9 +198,9 @@ class ViewPopulatorSpec: QuickSpec {
                 
                 provider.provideElements(Array(0 ..< 7))
                 let sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(populatorView: tableView, provider: provider) {
-                    element, cell, indexPath in
-                    cell.textLabel?.text = "\(element)"
-                    return cell
+                    configuration in
+                    configuration.cell.textLabel?.text = "\(configuration.element)"
+                    return configuration.cell
                 }
                 
                 sut = ViewPopulator(populatorView: tableView, sectionCellModelsFactories: [sectionCellFactory])
@@ -229,9 +229,9 @@ class ViewPopulatorSpec: QuickSpec {
                 
                 provider.provideElements(Array(0 ..< 7))
                 let sectionCellFactory = SectionCellsFactory<Int, UITableViewCell>(populatorView: collectionView, provider: provider) {
-                    element, cell, indexPath in
-                    cell.textLabel?.text = "\(element)"
-                    return cell
+                    configuration in
+                    configuration.cell.textLabel?.text = "\(configuration.element)"
+                    return configuration.cell
                 }
                 
                 sut = ViewPopulator(populatorView: collectionView, sectionCellModelsFactories: [sectionCellFactory])

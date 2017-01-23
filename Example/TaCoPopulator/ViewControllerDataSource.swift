@@ -20,9 +20,10 @@ class ViewControllerDataSource<TableOrCollectionView: PopulatorView> {
     
     let dp1 = IntDataProvider {
         _ in return "Cell"
+
     }
     
-    let dp2 = StringDataProvider {
+    let dp2 = StringDataProvider  {
         _ in return "Cell"
     }
     
@@ -41,21 +42,32 @@ class ViewControllerDataSource<TableOrCollectionView: PopulatorView> {
             self?.stringSelected?(element, indexPath)
         }
         
-        let collectionViewCellConfig: (Any, TextCollectionViewCell, IndexPath) -> TextCollectionViewCell  = {
-            element, cell, _ in
-            cell.textLabel?.text = "\(element)"
-            return cell
+        let intCollectionViewCellConfig: (CellConfigurationDescriptor<Int, TextCollectionViewCell>) -> TextCollectionViewCell  = {
+            configuration in
+            configuration.cell.textLabel?.text = "\(configuration.element)"
+            return configuration.cell
+        }
+        let stringCollectionViewCellConfig: (CellConfigurationDescriptor<String, TextCollectionViewCell>) -> TextCollectionViewCell  = {
+            configuration in
+            configuration.cell.textLabel?.text = "\(configuration.element)"
+            return configuration.cell
         }
         
-        let tableViewViewCellConfig: (Any, UITableViewCell, IndexPath) -> UITableViewCell  = {
-            element, cell, _ in
-            cell.textLabel?.text = "\(element)"
-            return cell
+        let intTableViewViewCellConf: (CellConfigurationDescriptor<Int, UITableViewCell>) -> UITableViewCell  = {
+            configuration in
+            configuration.cell.textLabel?.text = "\(configuration.element)"
+            return configuration.cell
+        }
+        
+        let stringTableViewViewCellConf: (CellConfigurationDescriptor<String, UITableViewCell>) -> UITableViewCell  = {
+            configuration in
+            configuration.cell.textLabel?.text = "\(configuration.element)"
+            return configuration.cell
         }
         
         if  let populatorView  = populatorView as? UICollectionView {
-            let  section1factory = SectionCellsFactory<Int, TextCollectionViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: collectionViewCellConfig)
-            let  section2factory = SectionCellsFactory<String, TextCollectionViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: collectionViewCellConfig)
+            let  section1factory = SectionCellsFactory<Int, TextCollectionViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: intCollectionViewCellConfig)
+            let  section2factory = SectionCellsFactory<String, TextCollectionViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: stringCollectionViewCellConfig)
             
             let elementsDidReload = section1factory.elementsDidReload
             section1factory.elementsDidReload = {
@@ -67,8 +79,8 @@ class ViewControllerDataSource<TableOrCollectionView: PopulatorView> {
         }
         
         if  let populatorView  = populatorView as? UITableView {
-            let section1factory = SectionCellsFactory<Int, UITableViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: tableViewViewCellConfig)
-            let section2factory = SectionCellsFactory<String, UITableViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: tableViewViewCellConfig)
+            let section1factory = SectionCellsFactory<Int, UITableViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: intTableViewViewCellConf)
+            let section2factory = SectionCellsFactory<String, UITableViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: stringTableViewViewCellConf)
             self.populator = Populator(with: populatorView, sectionCellModelsFactories: [section1factory, section2factory])
 
             dp1.heightForCell = {

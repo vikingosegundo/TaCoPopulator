@@ -40,21 +40,33 @@ class MockDataSource<TableOrCollectionView: PopulatorView> {
             self?.stringSelected?(element, indexPath)
         }
         
-        let collectionViewCellConfig: (Any, TextCollectionViewCell, IndexPath) -> TextCollectionViewCell  = {
-            element, cell, _ in
-            cell.textLabel?.text = "\(element)"
-            return cell
+        let intCollectionViewCellConfig: (CellConfigurationDescriptor<Int, TextCollectionViewCell>) -> TextCollectionViewCell  = {
+            configuration in
+            configuration.cell.textLabel?.text = "\(configuration.element)"
+            return configuration.cell
         }
         
-        let tableViewViewCellConfig: (Any, UITableViewCell, IndexPath) -> UITableViewCell  = {
-            element, cell, _ in
-            cell.textLabel?.text = "\(element)"
-            return cell
+        let stringCollectionViewCellConfig: (CellConfigurationDescriptor<String, TextCollectionViewCell>) -> TextCollectionViewCell  = {
+            configuration in
+            configuration.cell.textLabel?.text = "\(configuration.element)"
+            return configuration.cell
+        }
+        
+        let intTableViewViewCellConfig: (CellConfigurationDescriptor<Int, UITableViewCell>) -> UITableViewCell  = {
+            configuration in
+            configuration.cell.textLabel?.text = "\(configuration.element)"
+            return configuration.cell
+        }
+        
+        let stringTableViewViewCellConfig: (CellConfigurationDescriptor<String, UITableViewCell>) -> UITableViewCell  = {
+            configuration in
+            configuration.cell.textLabel?.text = "\(configuration.element)"
+            return configuration.cell
         }
         
         if  let populatorView  = populatorView as? UICollectionView {
-            let  section1factory = SectionCellsFactory<Int, TextCollectionViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: collectionViewCellConfig)
-            let  section2factory = SectionCellsFactory<String, TextCollectionViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: collectionViewCellConfig)
+            let  section1factory = SectionCellsFactory<Int, TextCollectionViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: intCollectionViewCellConfig)
+            let  section2factory = SectionCellsFactory<String, TextCollectionViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: stringCollectionViewCellConfig)
             
             let elementsDidReload = section1factory.elementsDidReload
             section1factory.elementsDidReload = {
@@ -66,8 +78,8 @@ class MockDataSource<TableOrCollectionView: PopulatorView> {
         }
         
         if  let populatorView  = populatorView as? UITableView {
-            let section1factory = SectionCellsFactory<Int, UITableViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: tableViewViewCellConfig)
-            let section2factory = SectionCellsFactory<String, UITableViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: tableViewViewCellConfig)
+            let section1factory = SectionCellsFactory<Int, UITableViewCell>(populatorView: populatorView, provider: dp1, cellConfigurator: intTableViewViewCellConfig)
+            let section2factory = SectionCellsFactory<String, UITableViewCell>(populatorView: populatorView, provider: dp2, cellConfigurator: stringTableViewViewCellConfig)
             self.populator = Populator(with: populatorView, sectionCellModelsFactories: [section1factory, section2factory])
             
             dp1.heightForCell = {
