@@ -6,12 +6,14 @@
 //  Copyright © 2016 Manuel Meyer. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 public
 protocol SectionDataProviderType {
     var didSelectIndexPath:((IndexPath) -> Void)? { get }
+    var actionForIndexPath:((IndexPath) -> [UITableViewRowAction]?)? { get }
+
     var elementsDidReload:(() -> Void)? { set get }
     func numberOfElements() -> Int
     func elementAt(index: Int) -> Any
@@ -36,17 +38,30 @@ class SectionDataProvider<Element>: SectionDataProviderType {
     open fileprivate(set)
     var didSelectIndexPath:((IndexPath) -> Void)?
     
+ 
     open
     var selected:((Element, IndexPath) -> Void)? {
         didSet {
-            didSelectIndexPath = {
-                [weak self] indexPath in
+            didSelectIndexPath = { [weak self] indexPath in
                 guard let `self` = self else { return }
                 let element = self.elements()[indexPath.row]
                 self.selected?(element,indexPath)
             }
         }
     }
+    open fileprivate(set)
+    var actionForIndexPath: ((IndexPath) -> [UITableViewRowAction]?)?
+    
+    open var actionsForElement: ((Element, IndexPath) -> [UITableViewRowAction]?)? {
+        didSet {
+            actionForIndexPath = { [weak self] indexPath in
+                guard let `self` = self else { return nil }
+                let element = self.elements()[indexPath.row]
+                return self.actionsForElement?(element, indexPath)
+            }
+        }
+    }
+
     
     fileprivate
     var privateElements: [Element] = [] {

@@ -162,7 +162,18 @@ extension ViewPopulator: UITableViewDataSource, UITableViewDelegate {
             return footer()
         }
         return nil
-    }}
+    }
+    
+    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let factory = sectionCellModelsFactories[indexPath.section]
+        return factory.provider.actionForIndexPath != nil
+    }
+    
+    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let factory = sectionCellModelsFactories[indexPath.section]
+        return factory.provider.actionForIndexPath?(indexPath)
+    }
+}
 
 
 extension ViewPopulator: UICollectionViewDataSource, UICollectionViewDelegate {

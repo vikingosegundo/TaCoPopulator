@@ -60,7 +60,6 @@ class SectionCellsFactory<Element:Any, Cell: PopulatorViewCell>: SectionCellsFac
     open var sectionIndex: Int = -1
     fileprivate weak var populatorView: PopulatorView?
     open var elementsDidReload: (() -> Void)?
-
     open
     func cellModels() -> [CellModelType] {
         guard let realProvider = provider as? SectionDataProvider<Element> else { fatalError() }
