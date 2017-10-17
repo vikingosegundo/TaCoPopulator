@@ -20,12 +20,12 @@ class TableViewController: UIViewController {
         self.datasource?.intSelected = {
             [weak self] int, indexPath in
             guard let `self` = self else { return }
-            print("\(int) @ \(indexPath) @ \(self.tableView.cellForRow(at: indexPath))")
+            print("\(int) @ \(indexPath) @ \(String(describing: self.tableView.cellForRow(at: indexPath)))")
         }
         self.datasource?.stringSelected = {
             [weak self] str, indexPath in
             guard let `self` = self else { return }
-            print("\(str) @ \(indexPath) @ \(self.tableView.cellForRow(at: indexPath))")
+            print("\(str) @ \(indexPath) @ \(String(describing: self.tableView.cellForRow(at: indexPath)))")
         }
     }
 }

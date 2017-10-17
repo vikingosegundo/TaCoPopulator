@@ -19,12 +19,12 @@ class ViewControllerDataSource<TableOrCollectionView: PopulatorView> {
     var stringSelected: ((String, IndexPath) -> Void)?
     
     let dp1 = IntDataProvider {
-        _ in return "Cell"
+        _,_  in return "Cell"
 
     }
     
     let dp2 = StringDataProvider  {
-        _ in return "Cell"
+        _,_  in return "Cell"
     }
     
     

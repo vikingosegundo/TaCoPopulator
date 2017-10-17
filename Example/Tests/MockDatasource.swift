@@ -18,11 +18,11 @@ class MockDataSource<TableOrCollectionView: PopulatorView> {
     var stringSelected: ((String, IndexPath) -> Void)?
     
     let dp1 = MockIntDataProvider {
-        _ in return "Cell"
+        _,_  in return "Cell"
     }
     
     let dp2 = MockStringDataProvider {
-        _ in return "Cell"
+        _,_  in return "Cell"
     }
     
     

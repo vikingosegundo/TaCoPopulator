@@ -15,7 +15,7 @@ class SectionDataProviderSpec : QuickSpec {
                 
                 beforeEach {
                     sut = SectionDataProvider<Int> {
-                        _ in
+                        _,_  in
                         return "cell"
                     }
                     sut?.provideElements(Array(0 ..< 7))
