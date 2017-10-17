@@ -1,7 +1,7 @@
 PODS:
   - Nimble (7.0.2)
   - Quick (1.2.0)
-  - TaCoPopulator (0.1.5)
+  - TaCoPopulator (0.1.6)
 
 DEPENDENCIES:
   - Nimble (~> 7.0)
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  TaCoPopulator: 938fe23fb977851af5f31914a4c35185e7531511
+  TaCoPopulator: 35fb0e1a7ded3fbbc6a5112229f2efb7cbf762d7
 
 PODFILE CHECKSUM: e8b6c32e8c5f441eeeb649c6ec2a2c141fdbffcf
 
